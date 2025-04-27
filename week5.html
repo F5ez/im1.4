@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.4.2/aframe.min.js"></script>
+    <script>
+        AFRAME.registerComponent('auto-rotate', {
+            schema: {speed: {type: 'number', default: 20}},
+            tick: function (time, timeDelta) {
+                this.el.object3D.rotation.y += THREE.MathUtils.degToRad(this.data.speed * timeDelta / 1000);
+            }
+        });
+    </script>
+</head>
+<body>
+<script src="week5_script.js"></script>
+<a-scene>
+    <a-sky color="black"></a-sky>
+    <a-camera position="0 0 200" cursor-visible="true" cursorscale="2" cursor-color="#0095DD" cursor-opacity="0.5"></a-camera>
+
+    <a-sphere radius="6"
+              src="img/2k_sun.jpg"
+              planet="dist: 0; mass: 1.989e30; name: Sun; "
+              auto-rotate="speed: 10">
+    </a-sphere>
+
+    <a-sphere radius="0.6"
+              src="img/2k_mercury.jpg"
+              planet="dist: 57.91e9; mass: 3.3011e23; T:87.9691; name: Mercury; vS:0.2"
+              auto-rotate="speed: 10;">
+    </a-sphere>
+
+    <a-sphere radius="2.8"
+              src="img/2k_venus_atmosphere.jpg"
+              planet="dist: 108.21e9; mass: 4.8675e24; T: 224.7; name: Venus; vS:0.2"
+              auto-rotate="speed: 10">
+    </a-sphere>
+
+
+    <a-sphere radius="2.7
+"
+              src="img/2k_earth_daymap.jpg"
+              planet="dist: 149.6e9; mass: 6e24; T: 365; name: Earth; vS:0.2"
+              auto-rotate="speed: 7;
+                ">
+    </a-sphere>
+
+    <a-sphere radius="0.85"
+              src="img/2k_mars.jpg"
+              planet="dist:227.939366e9; mass:6.4171e23; T: 686.980 ; name: Mars; vS:0.2"
+              auto-rotate="speed: 8">
+    </a-sphere>
+    <a-sphere radius="4.8"
+              src="img/2k_jupiter.jpg"
+              planet="dist:778e9; mass:1.8982e27; T: 4332; name: Jupiter; vS:0.1"
+              auto-rotate="speed: 8">
+    </a-sphere>
+
+
+    <a-assets>
+        <img id="saturn-rings-texture" src="img/2k_saturn_ring_alpha.png" />
+    </a-assets>
+
+    <a-sphere id="saturn"
+              radius="3.6"
+              src="img/2k_saturn.jpg"
+              planet="dist:1433.53e9; mass:5.6834e26; T: 10755; name:Saturn; vS:0.1"
+              auto-rotate="speed: 8">
+    </a-sphere>
+
+    <!-- Кольца Сатурна -->
+    <a-entity saturn-rings="parentId: saturn">
+        <a-entity geometry="primitive: ring; radiusInner: 4; radiusOuter: 6; segmentsTheta: 64"
+                  material="src: #saturn-rings-texture; side: double; transparent: true; opacity: 0.9"
+                  rotation="90 0 0">
+        </a-entity>
+    </a-entity>
+    <a-sphere radius="3"
+              src="img/2k_uranus.jpg"
+              planet="dist:2.870972e12; mass:8.6810e25; T: 30688.5; name: Uranus; vS:0.07 "
+              auto-rotate="speed: 8">
+    </a-sphere>
+    <a-sphere radius="3"
+              src="img/2k_neptune.jpg"
+              planet="dist:4.54e12; mass:1.02409e26; T: 60195; name: Neptune; vS:0.06 "
+              auto-rotate="speed: 8">
+    </a-sphere>
+
+
+    <a-entity main></a-entity>
+</a-scene>
+</body>
+</html>
