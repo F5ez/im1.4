@@ -6,7 +6,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.4.2/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
     <script>
         AFRAME.registerComponent('auto-rotate', {
             schema: {speed: {type: 'number', default: 20}},
@@ -18,11 +19,15 @@
 </head>
 <body>
 <script src="week5_script.js"></script>
-<a-scene>
-    <a-sky color="black"></a-sky>
-    <a-camera position="0 0 200" cursor-visible="true" cursorscale="2" cursor-color="#0095DD" cursor-opacity="0.5"></a-camera>
+<a-scene vr-mode-ui="enabled: false;"
+         renderer="logarithmicDepthBuffer: true;"
+         embedded
+         arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false; debug: false;">
+    <a-marker type="pattern" url="img/pattern-240x240 (1).patt">
+        <a-entity>
 
-    <a-sphere radius="6"
+
+    <a-sphere radius="10"
               src="img/2k_sun.jpg"
               planet="dist: 0; mass: 1.989e30; name: Sun; "
               auto-rotate="speed: 10">
@@ -30,7 +35,7 @@
 
     <a-sphere radius="0.6"
               src="img/2k_mercury.jpg"
-              planet="dist: 57.91e9; mass: 3.3011e23; T:87.9691; name: Mercury; vS:0.2"
+              planet="dist: 57.91e9; mass: 3.3011e23; T:87.9691; name: Mercury; vS:0.25"
               auto-rotate="speed: 10;">
     </a-sphere>
 
@@ -51,24 +56,22 @@
 
     <a-sphere radius="0.85"
               src="img/2k_mars.jpg"
-              planet="dist:227.939366e9; mass:6.4171e23; T: 686.980 ; name: Mars; vS:0.2"
+              planet="dist:227.939366e9; mass:6.4171e23; T: 686.980 ; name: Mars; vS:0.16"
               auto-rotate="speed: 8">
     </a-sphere>
     <a-sphere radius="4.8"
               src="img/2k_jupiter.jpg"
-              planet="dist:778e9; mass:1.8982e27; T: 4332; name: Jupiter; vS:0.1"
+              planet="dist:778e9; mass:1.8982e27; T: 4332; name: Jupiter; vS:0.06"
               auto-rotate="speed: 8">
     </a-sphere>
 
 
-    <a-assets>
-        <img id="saturn-rings-texture" src="img/2k_saturn_ring_alpha.png" />
-    </a-assets>
+
 
     <a-sphere id="saturn"
               radius="3.6"
               src="img/2k_saturn.jpg"
-              planet="dist:1433.53e9; mass:5.6834e26; T: 10755; name:Saturn; vS:0.1"
+              planet="dist:1433.53e9; mass:5.6834e26; T: 10755; name:Saturn; vS:0.05"
               auto-rotate="speed: 8">
     </a-sphere>
 
@@ -81,15 +84,19 @@
     </a-entity>
     <a-sphere radius="3"
               src="img/2k_uranus.jpg"
-              planet="dist:2.870972e12; mass:8.6810e25; T: 30688.5; name: Uranus; vS:0.07 "
+              planet="dist:2.870972e12; mass:8.6810e25; T: 30688.5; name: Uranus; vS:0.03 "
               auto-rotate="speed: 8">
     </a-sphere>
     <a-sphere radius="3"
               src="img/2k_neptune.jpg"
-              planet="dist:4.54e12; mass:1.02409e26; T: 60195; name: Neptune; vS:0.06 "
+              planet="dist:4.54e12; mass:1.02409e26; T: 60195; name: Neptune; vS:0.03 "
               auto-rotate="speed: 8">
     </a-sphere>
+    </a-entity>
+    </a-marker>
+    <a-camera position="0 0 200" cursor-visible="true" cursorscale="2" cursor-color="#0095DD" cursor-opacity="0.5"></a-camera>
 
+    <a-entity camera></a-entity>
 
     <a-entity main></a-entity>
 </a-scene>
